@@ -1,0 +1,38 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+  	"$id": "http://example.com/product.schema.json",
+  	"title": "Driver",
+	  "description": "Circuit Information",
+  	"properties": {
+  		"DriverId" : {
+  			"description": "unique number identifier of a Driver",
+  			"type" : "integer"
+  		},
+  		"DriverRef" : {
+  			"description" : "unique char identifier of a Driver",
+  			"type" : "string",
+			"minLength": 2
+  		},
+  		"forename" : {
+  			"description" : "Driver forname",
+  			"type" : "string",
+			"minLength": 3
+  		},
+  		"surname" : {
+  			"description" : "Driver surname",
+  			"type" : "string",
+			"minLength": 3
+  		},
+  		"dob" : {
+  			"description" : "Driver Date of Birth",
+  			"type" : "integer",
+			"minLength": 3
+  		},
+  		"nationality" : {
+  			"description" : "Driver Nationality",
+  			"type" : "string",
+			"minimum": 10.5
+  		}
+  	},
+  	"required" : ["DriverId", "DriverRef", "forename"]
+}

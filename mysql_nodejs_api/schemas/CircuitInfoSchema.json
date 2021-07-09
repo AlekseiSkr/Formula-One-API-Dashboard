@@ -1,0 +1,43 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+  	"$id": "http://example.com/product.schema.json",
+  	"title": "Circuit",
+  	"description": "Circuit Information",
+  	"properties": {
+  		"CircuitID" : {
+  			"description": "unique number identifier for Circuit",
+  			"type" : "integer"
+  		},
+  		"CircuitRef" : {
+  			"description" : "unique char identifier for Circuit",
+  			"type" : "string",
+			"minLength": 3
+  		},
+  		"CircuitName" : {
+  			"description" : "Name of a Circuit",
+  			"type" : "string",
+			"minLength": 3
+  		},
+  		"Location" : {
+  			"description" : "Location of a Circuit",
+  			"type" : "string",
+			"minLength": 3
+  		},
+  		"Country" : {
+  			"description" : "Country of a Circuit",
+  			"type" : "string",
+			"minLength": 3
+  		},
+  		"lat" : {
+  			"description" : "latitude of a Circuit",
+  			"type" : "integer",
+			"minimum": 10.5
+  		},
+  		"lng" : {
+  			"description" : "longitude of a Circuit",
+  			"type" : "integer",
+			"minimum": 10.5
+  		}
+  	},
+  	"required" : ["CircuitID", "CircuitRef", "CircuitName"]
+}

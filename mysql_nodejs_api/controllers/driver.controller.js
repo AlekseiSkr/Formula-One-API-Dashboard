@@ -1,7 +1,13 @@
 'use strict';
 
 const Driver = require('../models/driver.model');
-const { route } = require('../routes/circuit.routes');
+const { route } = require('../routes/driver.routes');
+
+/**
+ * Find All
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.findAll = function (req, res) {
   Driver.findAll(function (err, driver) {
     console.log('controller')
@@ -9,6 +15,19 @@ exports.findAll = function (req, res) {
       res.send(err);
     console.log('res', driver);
     res.send(driver);
+  });
+};
+
+/**
+ * Find by ID
+ * @param {*} req 
+ * @param {*} res 
+ */
+ exports.findById = function (req, res) {
+  Driver.findById(req.params.id, function (err, driver) {
+    if (err)
+      res.send(err);
+    res.json(driver);
   });
 };
 
@@ -32,14 +51,11 @@ exports.create = function (req, res) {
   }
 };
 
-exports.findById = function (req, res) {
-  Driver.findById(req.params.id, function (err, driver) {
-    if (err)
-      res.send(err);
-    res.json(driver);
-  });
-};
-
+/**
+ * Update
+ * @param {U} req id, driver object
+ * @param {*} res 
+ */
 exports.update = function (req, res) {
   if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
     res.status(400).send({ error: true, message: 'Please provide all required field' });
@@ -52,6 +68,11 @@ exports.update = function (req, res) {
   }
 };
 
+/**
+ * Delete
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.delete = function (req, res) {
   Driver.delete(req.params.id, function (err, driver) {
     if (err)

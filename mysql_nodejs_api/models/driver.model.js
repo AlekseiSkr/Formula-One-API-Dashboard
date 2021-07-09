@@ -45,6 +45,7 @@ else{
 }
 });
 };
+
 Driver.update = function(id, driver, result){
 dBcon.query("UPDATE drivers SET driverId=?,driverRef=?,forename=?,surname=?,dob=?,nationality=? WHERE driverId = ?", [driver.driverId,driver.driverRef,driver.forename,driver.surname,driver.dob,driver.nationality, id], function (err, res) {
 if(err) {
