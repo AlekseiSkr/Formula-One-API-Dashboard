@@ -52,11 +52,17 @@ body{
   }
 
   .data-section{
-    border-radius: 30px 30px 0 0;
     background-color: rgb(243, 243, 243);
-    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.7),
-                inset -2px -1px 8px 2px rgba(255, 255, 255, 0.7);
+    border-radius: 1.5rem 1.5rem 0 0;
         color: black;
+  }
+
+  .hidden{
+    display: none;
+  }
+
+  .shown{
+    display: block;
   }
 
   /* table */
