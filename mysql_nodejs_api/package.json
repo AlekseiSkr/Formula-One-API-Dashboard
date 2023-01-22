@@ -17,7 +17,9 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "xml2js": "^0.4.23"
   },
+  "keywords": [],
   "description": ""
 }

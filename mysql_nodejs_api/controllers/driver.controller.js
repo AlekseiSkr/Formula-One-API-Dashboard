@@ -1,7 +1,23 @@
 'use strict';
-
 const Driver = require('../models/driver.model');
 const { route } = require('../routes/driver.routes');
+
+function JSONtoXML(driver){
+  let xml = '<?xml version="1.0" encoding="UTF-8" ?>';
+  xml += '<DriverList>';
+  driver.forEach(function(driver) {
+    xml += '<Driver>';
+    xml += '<DriverId>' + driver.driverId + '</DriverId>';
+    xml += '<DriverRef>' + driver.driverRef + '</DriverRef>';
+    xml += '<forename>' + driver.forename + '</forename>';
+    xml += '<surname>' + driver.surname + '</surname>';
+    xml += '<dob>' + driver.dob + '</dob>';
+    xml += '<nationality>' + driver.nationality + '</nationality>';
+    xml += '</Driver>';
+  });
+  xml += '</DriverList>';
+  return xml;
+}
 
 /**
  * Find All
@@ -15,6 +31,19 @@ exports.findAll = function (req, res) {
       res.send(err);
     console.log('res', driver);
     res.send(driver);
+  });
+};
+
+//XML
+//XML driver.controller.js
+exports.XMLfindAll = function (req, res) {
+  Driver.findAll(function (err, driver) {
+    if (err)
+      res.send(err);
+  
+    let xml = JSONtoXML(driver);
+    res.set('Content-Type', 'application/xml');
+    res.send(xml);
   });
 };
 
@@ -32,6 +61,19 @@ exports.findAll = function (req, res) {
 };
 
 /**
+ * Find by Term
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.findByTerm = function (req, res) {
+  Driver.findByTerm(req.params.term, function (err, driver) {
+    if (err)
+      res.send(err);
+    res.json(driver);
+  });
+};
+
+/**
  * Create Driver Function
  * @param {*} req router call
  * @param {*} res 
@@ -42,7 +84,6 @@ exports.create = function (req, res) {
   if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
     res.status(400).send({ error: true, message: 'Please provide all required field' });
   } else {
-    console.log(req.body.id)
     Driver.create(new_driver, function (err, driver) {
       if (err)
         res.send(err);

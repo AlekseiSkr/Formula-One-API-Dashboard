@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DriverList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Driver" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="DriverId"/>
+              <xs:element type="xs:string" name="DriverRef"/>
+              <xs:element type="xs:string" name="forename"/>
+              <xs:element type="xs:string" name="surname"/>
+              <xs:element type="xs:string" name="dob"/>
+              <xs:element type="xs:string" name="nationality"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

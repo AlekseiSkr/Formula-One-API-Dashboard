@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Driver xmlns="http://localhost:4001/formula_api/drivers/XML">
+	<DriverId>12345</DriverId>
+	<DriverRef>DR</DriverRef>
+	<forename>John</forename>
+	<surname>Smith</surname>
+	<dob>01/01/2020</dob>
+	<nationality>American</nationality>
+</Driver>
