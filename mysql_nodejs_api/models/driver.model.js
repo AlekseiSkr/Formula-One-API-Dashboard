@@ -10,6 +10,7 @@ var Driver = function (driver) {
   this.nationality = driver.nationality;
 
 };
+
 Driver.create = function (newDriver, result) {
   dBcon.query("INSERT INTO drivers set ?", newDriver, function (err, res) {
     if (err) {
@@ -22,6 +23,7 @@ Driver.create = function (newDriver, result) {
     }
   });
 };
+
 Driver.findById = function (id, result) {
   dBcon.query("Select * from drivers where driverId = ? ", id, function (err, res) {
     if (err) {

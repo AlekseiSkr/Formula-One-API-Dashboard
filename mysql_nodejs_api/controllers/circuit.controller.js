@@ -1,5 +1,50 @@
 'use strict';
+const Ajv = require('ajv');
+const ajv = new Ajv({allErrors: true});
 const Circuit = require('../models/circuit.model');
+const jsonSchema = {
+	"$schema": "http://json-schema.org/draft-07/schema#",
+  	"$id": "http://example.com/product.schema.json",
+  	"title": "Circuit",
+  	"description": "Circuit Information",
+  	"properties": {
+  		"CircuitID" : {
+  			"description": "unique number identifier for Circuit",
+  			"type" : "integer"
+  		},
+  		"CircuitRef" : {
+  			"description" : "unique char identifier for Circuit",
+  			"type" : "string",
+			"minLength": 3
+  		},
+  		"CircuitName" : {
+  			"description" : "Name of a Circuit",
+  			"type" : "string",
+			"minLength": 3
+  		},
+  		"Location" : {
+  			"description" : "Location of a Circuit",
+  			"type" : "string",
+			"minLength": 3
+  		},
+  		"Country" : {
+  			"description" : "Country of a Circuit",
+  			"type" : "string",
+			"minLength": 3
+  		},
+  		"lat" : {
+  			"description" : "latitude of a Circuit",
+  			"type" : "integer",
+			"minimum": 10.5
+  		},
+  		"lng" : {
+  			"description" : "longitude of a Circuit",
+  			"type" : "integer",
+			"minimum": 10.5
+  		}
+  	},
+  	"required" : ["CircuitID", "CircuitRef", "CircuitName"]
+}
 
 function JSONtoXML(circuit){
   let xml = '<?xml version="1.0" encoding="UTF-8" ?>';
@@ -19,14 +64,23 @@ function JSONtoXML(circuit){
 }
 
 exports.findAll = function (req, res) {
+  const validator = ajv.compile(jsonSchema);
   Circuit.findAll(function (err, circuit) {
     console.log('controller')
     if (err)
       res.send(err);
-    console.log('res', circuit);
-    res.send(circuit);
+    const valid = validator(circuit);
+    if (!valid) {
+      res.send({
+        error: validator.errors
+      });
+    } else {
+      console.log('res', circuit);
+      res.send(circuit);
+    }
   });
 };
+
 exports.create = function (req, res) {
   const new_circuit = new Circuit(req.body);
   //handles null error
@@ -40,13 +94,22 @@ exports.create = function (req, res) {
     });
   }
 };
+
+
 exports.findById = function (req, res) {
-  Circuit.findById(req.params.id, function (err, circuit) {
-    if (err)
-      res.send(err);
-    res.json(circuit);
-  });
+  const validate = ajv.compile(jsonSchema);
+  const valid = validate(req.params.id);
+  if (valid) {
+    Circuit.findById(req.params.id, function (err, circuit){
+      if (err)
+        res.send(err);
+      res.json(circuit);
+    });
+  } else {
+    res.status(400).json(validate.errors);
+  }
 };
+
 exports.update = function (req, res) {
   if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
     res.status(400).send({ error: true, message: 'Please provide all required field' });
