@@ -6,7 +6,7 @@
   	"properties": {
   		"CircuitID" : {
   			"description": "unique number identifier for Circuit",
-  			"type" : "integer"
+  			"type" : "string"
   		},
   		"CircuitRef" : {
   			"description" : "unique char identifier for Circuit",
@@ -30,12 +30,12 @@
   		},
   		"lat" : {
   			"description" : "latitude of a Circuit",
-  			"type" : "integer",
+  			"type" : "string",
 			"minimum": 10.5
   		},
   		"lng" : {
   			"description" : "longitude of a Circuit",
-  			"type" : "integer",
+  			"type" : "string",
 			"minimum": 10.5
   		}
   	},

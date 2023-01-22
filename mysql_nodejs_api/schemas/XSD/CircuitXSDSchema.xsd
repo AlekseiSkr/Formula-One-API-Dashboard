@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="circuitList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="circuit" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="circuitId" type="xs:integer"/>
+              <xs:element name="circuitRef" type="xs:string"/>
+              <xs:element name="circuitName" type="xs:string"/>
+              <xs:element name="location" type="xs:string"/>
+              <xs:element name="country" type="xs:string"/>
+              <xs:element name="lat" type="xs:decimal"/>
+              <xs:element name="lng" type="xs:decimal"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

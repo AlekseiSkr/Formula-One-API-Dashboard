@@ -3,6 +3,8 @@ const router = express.Router()
 const raceController =   require('../controllers/race.controller');
 // Retrieve all races
 router.get('/', raceController.findAll);
+// Retrieve all races XML FORMAT
+router.get('/XML', raceController.XMLfindAll);
 // Create a new race
 router.post('/', raceController.create);
 // Retrieve a single race with id
