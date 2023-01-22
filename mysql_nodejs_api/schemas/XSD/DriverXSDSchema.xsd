@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="DriverList">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="Driver" maxOccurs="unbounded" minOccurs="0">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element type="xs:string" name="DriverId"/>
-              <xs:element type="xs:string" name="DriverRef"/>
-              <xs:element type="xs:string" name="forename"/>
-              <xs:element type="xs:string" name="surname"/>
-              <xs:element type="xs:string" name="dob"/>
-              <xs:element type="xs:string" name="nationality"/>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DriverList" type="DriverListType"/>
+  <xs:complexType name="DriverListType">
+    <xs:sequence>
+      <xs:element name="Driver" type="DriverType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DriverType">
+    <xs:sequence>
+      <xs:element name="DriverId" type="xs:integer" />
+      <xs:element name="DriverRef" type="xs:string" minLength="2" />
+      <xs:element name="forename" type="xs:string" minLength="3" />
+      <xs:element name="surname" type="xs:string" minLength="3"/>
+      <xs:element name="dob" type="xs:string" pattern="^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$"/>
+      <xs:element name="nationality" type="xs:string" minLength="10.5"/>
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>

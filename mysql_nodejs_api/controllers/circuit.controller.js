@@ -1,5 +1,23 @@
 'use strict';
 const Circuit = require('../models/circuit.model');
+
+function JSONtoXML(circuit){
+  let xml = '<?xml version="1.0" encoding="UTF-8" ?>';
+  xml += '<circuitList>';
+  circuit.forEach(function(circuit) {
+    xml += '<circuit>';
+    xml += '<circuitId>' + circuit.circuitId + '</circuitId>';
+    xml += '<circuitRef>' + circuit.circuitRef + '</circuitRef>';
+    xml += '<forename>' + circuit.forename + '</forename>';
+    xml += '<surname>' + circuit.surname + '</surname>';
+    xml += '<dob>' + circuit.dob + '</dob>';
+    xml += '<nationality>' + circuit.nationality + '</nationality>';
+    xml += '</circuit>';
+  });
+  xml += '</circuitList>';
+  return xml;
+}
+
 exports.findAll = function (req, res) {
   Circuit.findAll(function (err, circuit) {
     console.log('controller')

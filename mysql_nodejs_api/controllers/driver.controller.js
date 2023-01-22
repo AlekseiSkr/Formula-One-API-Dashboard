@@ -1,6 +1,6 @@
 'use strict';
 const Driver = require('../models/driver.model');
-const { route } = require('../routes/driver.routes');
+// const { route } = require('../routes/driver.routes');
 
 function JSONtoXML(driver){
   let xml = '<?xml version="1.0" encoding="UTF-8" ?>';

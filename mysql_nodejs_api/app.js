@@ -14,6 +14,10 @@ app.get('/', (req, res) => {
   res.redirect('../index.html');
 });
 
+app.get('/XMLDriver', (req, res) => {
+  res.redirect('../XMLdriver.html');
+});
+
 // Require circuit routes // using as middleware
 const circuitRoutes = require('./routes/circuit.routes')
 app.use('/formula_api/circuits', circuitRoutes)

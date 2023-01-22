@@ -1,9 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Driver xmlns="http://localhost:4001/formula_api/drivers/XML">
-	<DriverId>12345</DriverId>
-	<DriverRef>DR</DriverRef>
-	<forename>John</forename>
-	<surname>Smith</surname>
-	<dob>01/01/2020</dob>
-	<nationality>American</nationality>
-</Driver>
+<DriverList>
+    <Driver>
+        <DriverId>1</DriverId>
+        <DriverRef>hamilton</DriverRef>
+        <forename>Lewis</forename>
+        <surname>Hamilton</surname>
+        <dob>1/7/1985</dob>
+        <nationality>British</nationality>
+    </Driver>
+    <Driver>
+        <DriverId>2</DriverId>
+        <DriverRef>heidfeld</DriverRef>
+        <forename>Nick</forename>
+        <surname>Heidfeld</surname>
+        <dob>5/10/1977</dob>
+        <nationality>German</nationality>
+    </Driver>
+    <Driver>
+        <DriverId>3</DriverId>
+        <DriverRef>rosberg</DriverRef>
+        <forename>Nico</forename>
+        <surname>Rosberg</surname>
+        <dob>6/27/1985</dob>
+        <nationality>German</nationality>
+    </Driver>
+<DriverList>
