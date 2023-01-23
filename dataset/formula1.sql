@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2021 at 04:52 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Generation Time: Jan 23, 2023 at 09:14 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -36,7 +35,7 @@ CREATE TABLE `circuits` (
   `Country` varchar(50) DEFAULT NULL,
   `lat` decimal(8,6) NOT NULL,
   `lng` decimal(9,6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `circuits`
@@ -118,7 +117,8 @@ INSERT INTO `circuits` (`CircuitID`, `CircuitRef`, `CircuitName`, `Location`, `C
 (73, 'BAK', 'Baku City Circuit', 'Baku', 'Azerbaijan', '40.372500', '49.853300'),
 (74, 'hanoi', 'Hanoi Street Circuit', 'Hanoi', 'Vietnam', '21.016600', '105.766000'),
 (75, 'portimao', 'Autodromo Internacional do Algarve', 'PortimÃ£o', 'Portugal', '37.227000', '-8.626700'),
-(76, 'mugello', 'Autodromo Internazionale del Mugello', 'Mugello', 'Italy', '43.997500', '11.371900');
+(76, 'mugello', 'Autodromo Internazionale del Mugello', 'Mugello', 'Italy', '43.997500', '11.371900'),
+(78, 'road_to_eldorado', 'Grove Street Circuit', 'San Andreas', 'USA', '-37.849700', '144.968000');
 
 -- --------------------------------------------------------
 
@@ -127,19 +127,20 @@ INSERT INTO `circuits` (`CircuitID`, `CircuitRef`, `CircuitName`, `Location`, `C
 --
 
 CREATE TABLE `drivers` (
-  `driverId` int(3) DEFAULT NULL,
+  `driverId` int(3) NOT NULL,
   `driverRef` varchar(18) DEFAULT NULL,
   `forename` varchar(17) DEFAULT NULL,
   `surname` varchar(23) DEFAULT NULL,
   `dob` varchar(10) DEFAULT NULL,
   `nationality` varchar(17) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `drivers`
 --
 
 INSERT INTO `drivers` (`driverId`, `driverRef`, `forename`, `surname`, `dob`, `nationality`) VALUES
+(0, 'massa', 'Felipe', 'Massa', '4/25/1981', 'Brazilian'),
 (1, 'hamilton', 'Lewis', 'Hamilton', '1/7/1985', 'British'),
 (2, 'heidfeld', 'Nick', 'Heidfeld', '5/10/1977', 'German'),
 (3, 'rosberg', 'Nico', 'Rosberg', '6/27/1985', 'German'),
@@ -201,7 +202,6 @@ INSERT INTO `drivers` (`driverId`, `driverRef`, `forename`, `surname`, `dob`, `n
 (59, 'bernoldi', 'Enrique', 'Bernoldi', '10/19/1978', 'Brazilian'),
 (60, 'mazzacane', 'Gastón', 'Mazzacane', '5/8/1975', 'Argentine'),
 (61, 'enge', 'Tomáš', 'Enge', '9/11/1976', 'Czech'),
-(62, 'yoong', 'Alex', 'Yoong', '7/20/1976', 'Malaysian'),
 (63, 'salo', 'Mika', 'Salo', '11/30/1966', 'Finnish'),
 (64, 'diniz', 'Pedro', 'Diniz', '5/22/1970', 'Brazilian'),
 (65, 'herbert', 'Johnny', 'Herbert', '6/25/1964', 'British'),
@@ -262,7 +262,6 @@ INSERT INTO `drivers` (`driverId`, `driverRef`, `forename`, `surname`, `dob`, `n
 (120, 'barbazza', 'Fabrizio', 'Barbazza', '4/2/1963', 'Italian'),
 (121, 'andretti', 'Michael', 'Andretti', '10/5/1962', 'American'),
 (122, 'capelli', 'Ivan', 'Capelli', '5/24/1963', 'Italian'),
-(123, 'boutsen', 'Thierry', 'Boutsen', '7/13/1957', 'Belgian'),
 (124, 'apicella', 'Marco', 'Apicella', '10/7/1965', 'Italian'),
 (125, 'naspetti', 'Emanuele', 'Naspetti', '2/24/1968', 'Italian'),
 (126, 'toshio_suzuki', 'Toshio', 'Suzuki', '3/10/1955', 'Japanese'),
@@ -559,7 +558,7 @@ INSERT INTO `drivers` (`driverId`, `driverRef`, `forename`, `surname`, `dob`, `n
 (417, 'blignaut', 'Alex', 'Blignaut', '11/30/1932', 'South African'),
 (418, 'gregory', 'Masten', 'Gregory', '2/29/1932', 'American'),
 (419, 'rhodes', 'John', 'Rhodes', '8/18/1927', 'British'),
-(420, 'raby', 'Ian', 'Raby', '9/22/1921', 'British'),
+(420, 'raby', 'Ian', 'Ruby', '9/22/1920', 'British'),
 (421, 'rollinson', 'Alan', 'Rollinson', '5/15/1943', 'British'),
 (422, 'gubby', 'Brian', 'Gubby', '4/17/1934', 'British'),
 (423, 'mitter', 'Gerhard', 'Mitter', '8/30/1935', 'German'),
@@ -592,7 +591,6 @@ INSERT INTO `drivers` (`driverId`, `driverRef`, `forename`, `surname`, `dob`, `n
 (450, 'vos', 'Ernie', 'de Vos', '7/1/1941', 'Dutch'),
 (451, 'dochnal', 'Frank', 'Dochnal', '10/8/1920', 'American'),
 (452, 'monarch', 'Thomas', 'Monarch', '9/3/1945', 'American'),
-(842, 'gasly', 'Pierre', 'Gasly', '2/7/1996', 'French'),
 (453, 'lewis', 'Jackie', 'Lewis', '11/1/1936', 'British'),
 (454, 'ricardo_rodriguez', 'Ricardo', 'Rodríguez', '2/14/1942', 'Mexican'),
 (455, 'seidel', 'Wolfgang', 'Seidel', '7/4/1926', 'German'),
@@ -960,10 +958,10 @@ INSERT INTO `drivers` (`driverId`, `driverRef`, `forename`, `surname`, `dob`, `n
 (818, 'vergne', 'Jean-Éric', 'Vergne', '4/25/1990', 'French'),
 (819, 'pic', 'Charles', 'Pic', '2/15/1990', 'French'),
 (820, 'chilton', 'Max', 'Chilton', '4/21/1991', 'British'),
-(821, 'gutierrez', 'Esteban', 'Gutiérrez', '8/5/1991', 'Mexican');
-INSERT INTO `drivers` (`driverId`, `driverRef`, `forename`, `surname`, `dob`, `nationality`) VALUES
+(821, 'gutierrez', 'Esteban', 'Gutiérrez', '8/5/1991', 'Mexican'),
 (822, 'bottas', 'Valtteri', 'Bottas', '8/28/1989', 'Finnish'),
-(823, 'garde', 'Giedo', 'van der Garde', '4/25/1985', 'Dutch'),
+(823, 'garde', 'Giedo', 'van der Garde', '4/25/1985', 'Dutch');
+INSERT INTO `drivers` (`driverId`, `driverRef`, `forename`, `surname`, `dob`, `nationality`) VALUES
 (824, 'jules_bianchi', 'Jules', 'Bianchi', '8/3/1989', 'French'),
 (825, 'kevin_magnussen', 'Kevin', 'Magnussen', '10/5/1992', 'Danish'),
 (826, 'kvyat', 'Daniil', 'Kvyat', '4/26/1994', 'Russian'),
@@ -982,13 +980,20 @@ INSERT INTO `drivers` (`driverId`, `driverRef`, `forename`, `surname`, `dob`, `n
 (839, 'ocon', 'Esteban', 'Ocon', '9/17/1996', 'French'),
 (840, 'stroll', 'Lance', 'Stroll', '10/29/1998', 'Canadian'),
 (841, 'giovinazzi', 'Antonio', 'Giovinazzi', '12/14/1993', 'Italian'),
+(842, 'gasly', 'Pierre', 'Gasly', '2/7/1996', 'French'),
 (843, 'brendon_hartley', 'Brendon', 'Hartley', '11/10/1989', 'New Zealander'),
 (844, 'leclerc', 'Charles', 'Leclerc', '10/16/1997', 'Monegasque'),
 (845, 'sirotkin', 'Sergey', 'Sirotkin', '8/27/1995', 'Russian'),
 (846, 'norris', 'Lando', 'Norris', '11/13/1999', 'British'),
 (847, 'russell', 'George', 'Russell', '2/15/1998', 'British'),
 (848, 'albon', 'Alexander', 'Albon', '3/23/1996', 'Thai'),
-(849, 'latifi', 'Nicholas', 'Latifi', '6/29/1995', 'Canadian');
+(849, 'latifi', 'Nicholas', 'Latifi', '6/29/1995', 'Canadian'),
+(851, 'Insert', 'Text', 'Here', '10/31/1998', 'Estonian'),
+(852, 'Insert', 'Text', 'Here', '10/31/1998', 'Estonian'),
+(859, 'DA', 'Dave', 'B', '10/31/1999', 'Estonian'),
+(860, 'asf', 'Maer', 'FAf', '10/31/1999', 'Estonian'),
+(861, 'faf', 'faf', 'faf', '10/31/1999', 'Estonian'),
+(862, 'fasf', 'fsaf', 'fasf', '1/1/1999', 'Estonian');
 
 -- --------------------------------------------------------
 
@@ -1004,7 +1009,7 @@ CREATE TABLE `races` (
   `CircuitName` varchar(50) NOT NULL,
   `Date` date NOT NULL,
   `Time` time DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `races`
@@ -1999,7 +2004,6 @@ INSERT INTO `races` (`RaceID`, `CircuitID`, `SeasonYear`, `SeasonRound`, `Circui
 (997, 70, 2018, 9, 'Austrian Grand Prix', '2018-07-01', '13:10:00'),
 (998, 9, 2018, 10, 'British Grand Prix', '2018-07-08', '13:10:00'),
 (999, 10, 2018, 11, 'German Grand Prix', '2018-07-22', '13:10:00'),
-(1000, 11, 2018, 12, 'Hungarian Grand Prix', '2018-07-29', '13:10:00'),
 (1001, 13, 2018, 13, 'Belgian Grand Prix', '2018-08-26', '13:10:00'),
 (1002, 14, 2018, 14, 'Italian Grand Prix', '2018-09-02', '13:10:00'),
 (1003, 15, 2018, 15, 'Singapore Grand Prix', '2018-09-16', '12:10:00'),
@@ -2046,7 +2050,11 @@ INSERT INTO `races` (`RaceID`, `CircuitID`, `SeasonYear`, `SeasonRound`, `Circui
 (1044, 5, 2020, 14, 'Turkish Grand Prix', '2020-11-15', '10:10:00'),
 (1045, 3, 2020, 15, 'Bahrain Grand Prix', '2020-11-29', '15:10:00'),
 (1046, 3, 2020, 16, 'Sakhir Grand Prix', '2020-12-06', '17:10:00'),
-(1047, 24, 2020, 17, 'Abu Dhabi Grand Prix', '2020-12-13', '13:10:00');
+(1047, 24, 2020, 17, 'Abu Dhabi Grand Prix', '2020-12-13', '13:10:00'),
+(1048, 1, 2009, 1, 'Australian Grand Prix', '2009-03-28', '06:00:00'),
+(1049, 1, 2009, 1, 'Australian Grand Prix', '2009-03-28', '06:00:00'),
+(1050, 1, 2009, 1, 'Australian Grand Prix', '2009-03-28', '06:00:00'),
+(1051, 1, 2009, 1, 'Australian Grand Prix', '2009-03-28', '06:00:00');
 
 --
 -- Indexes for dumped tables
@@ -2059,11 +2067,39 @@ ALTER TABLE `circuits`
   ADD PRIMARY KEY (`CircuitID`);
 
 --
+-- Indexes for table `drivers`
+--
+ALTER TABLE `drivers`
+  ADD PRIMARY KEY (`driverId`);
+
+--
 -- Indexes for table `races`
 --
 ALTER TABLE `races`
   ADD PRIMARY KEY (`RaceID`),
-  ADD KEY `CircuitID` (`CircuitID`);
+  ADD KEY `SECONDARY` (`CircuitID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `circuits`
+--
+ALTER TABLE `circuits`
+  MODIFY `CircuitID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+
+--
+-- AUTO_INCREMENT for table `drivers`
+--
+ALTER TABLE `drivers`
+  MODIFY `driverId` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=863;
+
+--
+-- AUTO_INCREMENT for table `races`
+--
+ALTER TABLE `races`
+  MODIFY `RaceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1052;
 
 --
 -- Constraints for dumped tables
@@ -2073,6 +2109,7 @@ ALTER TABLE `races`
 -- Constraints for table `races`
 --
 ALTER TABLE `races`
+  ADD CONSTRAINT `SECONDARY` FOREIGN KEY (`CircuitID`) REFERENCES `circuits` (`CircuitID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `races_ibfk_1` FOREIGN KEY (`CircuitID`) REFERENCES `circuits` (`CircuitID`),
   ADD CONSTRAINT `races_ibfk_2` FOREIGN KEY (`CircuitID`) REFERENCES `circuits` (`CircuitID`);
 COMMIT;
