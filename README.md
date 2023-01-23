@@ -18,7 +18,7 @@
 
 ### API
 1. Create a new Database `'formula1'` and Import the `formula1.sql` file found in */dataset* folder
-2. Run `npm install` for the dev modules
+2. Open the API folder `cd .\mysql_nodejs_api\` and run `npm install` for the dev modules
 3. Run `node app.js`
 ### Consumer
 4. Go to `localhost:4001/`
