@@ -1,7 +1,7 @@
 # Formula One API and Dashboard
  ## Features
 * JSON Validation in Controllers
-* XML Validation on some methods controllers (little time)
+* XML Consumer support on Driver Page (little time)
 * REST-ful API with all functional CRUD operations (view in Postman)
 * JSON Schemas and XSD Schemas to preview
 * Beautiful, responsive API Consumer (mostly functional)
