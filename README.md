@@ -5,7 +5,6 @@
 * REST-ful API with all functional CRUD operations (view in Postman)
 * JSON Schemas and XSD Schemas to preview
 * Beautiful, responsive API Consumer (mostly functional)
-* Labor of perpetual love since friday 16:00
 * Exciting Dataset
 
 ---
